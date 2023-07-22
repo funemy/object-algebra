@@ -12,6 +12,6 @@ public class Main {
     public static void main(String[] args) {
         Exp e = testcase();
         EvalVisitor evaluator = new EvalVisitor();
-        System.out.println(evaluator.visit(e));
+        System.out.println(e.accept(evaluator));
     }
 }

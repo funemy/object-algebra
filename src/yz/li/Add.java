@@ -8,4 +8,9 @@ public class Add implements Exp{
         this.lhs = lhs;
         this.rhs = rhs;
     }
+
+    @Override
+    public <T> T accept(Visitor<T> visitor) {
+        return visitor.visit(this);
+    }
 }
