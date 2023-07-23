@@ -2,16 +2,18 @@ package yz.li;
 
 public class Main {
 
-    private static Exp testcase() {
+    private static <T> T gen(Algebra<T> algebra) {
         // (1+2) + (3+4)
-        return new Add(
-                new Add(new Lit(1), new Lit(2)),
-                new Add(new Lit(3), new Lit(4)));
+        return algebra.add(
+                algebra.add( algebra.lit(1), algebra.lit(2) ),
+                algebra.add( algebra.lit(3), algebra.lit(4) )
+        );
     }
 
     public static void main(String[] args) {
-        Exp e = testcase();
-        EvalVisitor evaluator = new EvalVisitor();
-        System.out.println(e.accept(evaluator));
+        ExpFactory ef = new ExpFactory();
+        StringFactory sf = new StringFactory();
+        System.out.println(gen(ef).eval());
+        System.out.println(gen(sf).stringify());
     }
 }
